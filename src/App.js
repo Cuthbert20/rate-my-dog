@@ -1,13 +1,9 @@
 import React from "react";
 import "./App.css";
-import Main from "./components/Main/Main";
+import routes from "./routes";
 
 function App() {
-  return (
-    <div>
-      <Main />
-    </div>
-  );
+  return <div>{routes}</div>;
 }
 
 export default App;
