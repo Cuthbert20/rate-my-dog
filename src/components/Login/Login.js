@@ -6,7 +6,7 @@ export default class Login extends Component {
     this.props.history.push("/register");
   };
   render() {
-    // console.log(this.props);
+    console.log(this.props);
     return (
       <div>
         <h1>Login</h1>

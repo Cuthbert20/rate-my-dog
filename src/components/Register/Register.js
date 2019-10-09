@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import "./Register.css";
 import axios from "axios";
+import { setUser } from "../../ducks/reducer";
+import { connect } from "react-redux";
 
-export default class Register extends Component {
+export class Register extends Component {
   state = {
     username: "",
     password: ""
@@ -16,6 +18,10 @@ export default class Register extends Component {
     const { username, password } = this.state;
     let res = await axios.post("/auth/register", { username, hash: password });
     console.log(res.data);
+    this.props.setUser({
+      userId: res.data.user.user_id,
+      username: res.data.user.username
+    });
     this.props.history.push("/home");
   };
   loginClick = () => {
@@ -23,7 +29,6 @@ export default class Register extends Component {
   };
   render() {
     const { username, password } = this.state;
-    console.log(this.state);
     return (
       <div>
         <h1>Register</h1>
@@ -45,3 +50,8 @@ export default class Register extends Component {
     );
   }
 }
+
+export default connect(
+  null,
+  { setUser }
+)(Register);
