@@ -28,5 +28,9 @@ module.exports = {
     if (req.session) {
       res.status(200).send(req.session);
     }
+  },
+  logout: (req, res) => {
+    req.session.destroy();
+    res.status(200).send({ message: "Your Logged Out" });
   }
 };
