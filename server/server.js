@@ -22,6 +22,7 @@ app.use(
 //endpoints
 //register, login, logout, getsession
 app.post("/auth/register", ctrl.register);
+app.post("/auth/login", ctrl.login);
 app.get("/auth/session", ctrl.getSession);
 app.post("/auth/logout", ctrl.logout);
 

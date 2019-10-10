@@ -32,5 +32,26 @@ module.exports = {
   logout: (req, res) => {
     req.session.destroy();
     res.status(200).send({ message: "Your Logged Out" });
+  },
+  login: async (req, res) => {
+    const db = req.app.get("db");
+    const { username, password } = req.body;
+    try {
+      const user = await db.find_username([username]);
+      var result = bcrypt.compareSync(password, user[0].hash);
+      // console.log("hit", user);
+      if (result) {
+        //deleting user password then putting user info on session
+        delete user[0].password;
+        req.session.user = user[0];
+        return res.status(200).send({
+          message: "Logged In",
+          user: req.session.user,
+          loggedIn: true
+        });
+      }
+    } catch (err) {
+      res.status(500).send({ message: "Failed to Login" });
+    }
   }
 };
