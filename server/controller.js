@@ -44,6 +44,7 @@ module.exports = {
         //deleting user password then putting user info on session
         delete user[0].password;
         req.session.user = user[0];
+        // console.log(req.session.user);
         return res.status(200).send({
           message: "Logged In",
           user: req.session.user,
@@ -53,5 +54,20 @@ module.exports = {
     } catch (err) {
       res.status(500).send({ message: "Failed to Login" });
     }
+  },
+  addDog: async (req, res) => {
+    const { img, rating } = req.body;
+    const { user_id } = req.session.user;
+    console.log(req.session.user);
+    const db = req.app.get("db");
+    const dogs = db.add_dog([img, rating, user_id]);
+    res.status(200).send(dogs);
+  },
+  yourDogs: async (req, res) => {
+    const db = req.app.get("db");
+    const { user_id } = req.session.user;
+    const dogs = await db.get_user_dogs([user_id]);
+    console.log("hit", dogs);
+    res.status(200).send(dogs);
   }
 };

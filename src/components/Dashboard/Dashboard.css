@@ -1,0 +1,11 @@
+.dash-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.dash-dog {
+  max-width: 350px;
+  border-radius: 5px;
+}

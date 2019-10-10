@@ -25,6 +25,8 @@ app.post("/auth/register", ctrl.register);
 app.post("/auth/login", ctrl.login);
 app.get("/auth/session", ctrl.getSession);
 app.post("/auth/logout", ctrl.logout);
+app.post("/api/dog", ctrl.addDog);
+app.get("/api/dog/rated", ctrl.yourDogs);
 
 massive(CONNECTION_STRING)
   .then(db => {

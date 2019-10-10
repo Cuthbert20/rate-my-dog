@@ -2,13 +2,15 @@
 
 const initialState = {
   userId: null,
-  username: ""
+  username: "",
+  dogImgs: []
 };
 
 //action constants
 
 const SET_USER = "SET_USER";
 const LOGOUT_USER = "LOGOUT_USER";
+const DOGS_RATED = "DOGS_RATED";
 
 //action builder
 
@@ -25,6 +27,13 @@ export function logoutUser() {
   };
 }
 
+export function dogsRated(dogs) {
+  return {
+    type: DOGS_RATED,
+    payload: dogs
+  };
+}
+
 //reducer
 
 export default (state = initialState, action) => {
@@ -34,6 +43,8 @@ export default (state = initialState, action) => {
       return initialState;
     case SET_USER:
       return { ...state, ...payload };
+    case DOGS_RATED:
+      return { ...state, dogImgs: payload };
     default:
       return state;
   }
