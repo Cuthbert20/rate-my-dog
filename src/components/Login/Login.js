@@ -1,20 +1,58 @@
 import React, { Component } from "react";
 import "./Login.css";
+import axios from "axios";
+import { connect } from "react-redux";
+import { setUser } from "../../ducks/reducer";
 
-export default class Login extends Component {
+export class Login extends Component {
+  state = {
+    username: "",
+    password: ""
+  };
   registerClick = () => {
     this.props.history.push("/register");
   };
+  login = async () => {
+    const { username, password } = this.state;
+    await axios.post("/auth/login", { username, password }).then(res => {
+      const { username } = res.data.user;
+      this.props.setUser({
+        username: username
+      });
+      this.props.history.push("/home");
+    });
+  };
+  handleChange = (e, key) => {
+    this.setState({
+      [key]: e.target.value
+    });
+  };
   render() {
-    console.log(this.props);
+    const { username, password } = this.state;
+    // console.log(this.state);
     return (
       <div>
         <h1>Login</h1>
-        <input type="text" />
-        <input type="text" />
-        <button>Login</button>
+        <input
+          onChange={e => this.handleChange(e, "username")}
+          value={username}
+          placeholder="Your Username..."
+          type="text"
+        />
+        <input
+          onChange={e => this.handleChange(e, "password")}
+          value={password}
+          placeholder="Your Password..."
+          type="password"
+        />
+        <button onClick={this.login}>Login</button>
         <button onClick={this.registerClick}>Register</button>
       </div>
     );
   }
 }
+
+export default connect(
+  null,
+  { setUser }
+)(Login);
