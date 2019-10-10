@@ -48,6 +48,16 @@ export class Main extends Component {
       });
     });
   };
+  chosenBreed = () => {
+    const { dogBreed } = this.state;
+    axios
+      .get(`https://dog.ceo/api/breed/${dogBreed}/images/random`)
+      .then(res => {
+        this.setState({
+          randomDog: res.data.message
+        });
+      });
+  };
   newAddDog = async () => {
     const { randomDog, rating } = this.state;
     await axios.post("/api/dog", { img: randomDog, rating });
@@ -70,9 +80,22 @@ export class Main extends Component {
   showDash = () => {
     this.props.history.push("/dashboard");
   };
+  handleBreed = e => {
+    this.setState({
+      dogBreed: e.target.value
+    });
+  };
   render() {
     const { randomDog, rating, dogBreed, breedList } = this.state;
     console.log(typeof breedList);
+    console.log(this.state);
+    // const allBreeds = Object.entries(breedList).map(([key, value]) => {
+    //   return (
+    //     <div>
+    //       <h1>{key}</h1>
+    //     </div>
+    //   );
+    // });
     return (
       <div className="main-container">
         <h1 className="title">Lets Rate Dogs</h1>
@@ -85,8 +108,15 @@ export class Main extends Component {
           {/* need to add a dropdown where rating can be selected and saved along with the photo then displayed
           on dashboard component */}
           <button onClick={this.newDog}>Next</button>
-          <select value={dogBreed}>
+          <select value={dogBreed} onChange={e => this.handleBreed(e)}>
             <option>SELECT Dog Breed</option>
+            {Object.entries(breedList).map(([key, value]) => {
+              return (
+                <option value={key} key={key}>
+                  {key}
+                </option>
+              );
+            })}
             {/* {breedList.map((elm, index) => {
               return (
                 <option key={index} value={elm}>
@@ -95,7 +125,7 @@ export class Main extends Component {
               );
             })} */}
           </select>
-          <button></button>
+          <button onClick={this.chosenBreed}>Select by Breed</button>
           <input
             onChange={e => this.handleChange(e, "rating")}
             value={rating}
@@ -105,6 +135,7 @@ export class Main extends Component {
           <button onClick={this.newAddDog}>Submit</button>
           <button onClick={this.showDash}>See Your Dashboard</button>
         </main>
+        {/* {allBreeds} */}
       </div>
     );
   }
