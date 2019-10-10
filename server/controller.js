@@ -15,15 +15,18 @@ module.exports = {
       const newUser = await db.create_user({ username, password });
       req.session.user = newUser[0];
       delete newUser[0].password;
-      res
-        .status(200)
-        .send({
-          message: "Registered & Logged In",
-          user: req.session.user,
-          loogedIn: true
-        });
+      res.status(200).send({
+        message: "Registered & Logged In",
+        user: req.session.user,
+        loogedIn: true
+      });
     } catch (err) {
       res.status(500).send({ message: "Failed to Register" });
+    }
+  },
+  getSession: (req, res) => {
+    if (req.session) {
+      res.status(200).send(req.session);
     }
   }
 };

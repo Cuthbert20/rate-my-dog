@@ -21,6 +21,8 @@ app.use(
 
 //endpoints
 app.post("/auth/register", ctrl.register);
+app.get("/auth/session", ctrl.getSession);
+//register, login, logout, getsession
 
 massive(CONNECTION_STRING)
   .then(db => {
