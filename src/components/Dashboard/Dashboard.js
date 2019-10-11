@@ -21,7 +21,7 @@ export class Dashboard extends Component {
     this.props.history.push("/home");
   };
   render() {
-    console.log(this.props);
+    // console.log(this.props);
     const { dogs } = this.state;
     const { username } = this.props;
     const ratedDogs = dogs.map((elm, index) => {

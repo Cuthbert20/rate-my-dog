@@ -18,7 +18,7 @@ export class Main extends Component {
   }
   dogApiImg = () => {
     axios.get(`https://dog.ceo/api/breeds/image/random`).then(res => {
-      console.log(res.data);
+      // console.log(res.data);
       this.setState({
         randomDog: res.data.message
       });
@@ -34,7 +34,7 @@ export class Main extends Component {
   };
   newDog = () => {
     axios.get(`https://dog.ceo/api/breeds/image/random`).then(res => {
-      console.log(res.data.message);
+      // console.log(res.data.message);
       this.setState({
         randomDog: res.data.message
       });
@@ -42,7 +42,7 @@ export class Main extends Component {
   };
   byBreed = () => {
     axios.get(`https://dog.ceo/api/breeds/list/all`).then(res => {
-      console.log(res.data.message);
+      // console.log(res.data.message);
       this.setState({
         breedList: res.data.message
       });
@@ -87,15 +87,8 @@ export class Main extends Component {
   };
   render() {
     const { randomDog, dogBreed, breedList } = this.state;
-    console.log(this.props);
+    // console.log(this.props);
     const { username } = this.props;
-    // const allBreeds = Object.entries(breedList).map(([key, value]) => {
-    //   return (
-    //     <div>
-    //       <h1>{key}</h1>
-    //     </div>
-    //   );
-    // });
     return (
       <div className="main-container">
         <h1 className="title">
@@ -153,7 +146,6 @@ export class Main extends Component {
             </button>
           </article>
         </main>
-        {/* {allBreeds} */}
       </div>
     );
   }

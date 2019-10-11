@@ -17,7 +17,7 @@ export class Register extends Component {
   handleClick = async () => {
     const { username, password } = this.state;
     let res = await axios.post("/auth/register", { username, hash: password });
-    console.log(res.data);
+    // console.log(res.data);
     this.props.setUser({
       userId: res.data.user.user_id,
       username: res.data.user.username

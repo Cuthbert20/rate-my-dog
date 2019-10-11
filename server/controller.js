@@ -58,7 +58,7 @@ module.exports = {
   addDog: async (req, res) => {
     const { img, rating } = req.body;
     const { user_id } = req.session.user;
-    console.log(req.session.user);
+    // console.log(req.session.user);
     const db = req.app.get("db");
     const dogs = db.add_dog([img, rating, user_id]);
     res.status(200).send(dogs);
@@ -67,7 +67,7 @@ module.exports = {
     const db = req.app.get("db");
     const { user_id } = req.session.user;
     const dogs = await db.get_user_dogs([user_id]);
-    console.log("hit", dogs);
+    // console.log("hit", dogs);
     res.status(200).send(dogs);
   }
 };
