@@ -105,7 +105,9 @@ export class Main extends Component {
         </button>
         <main className="dog-container">
           <img className="dog-img" src={randomDog} alt="Displaying Cute Dog" />
-          <button onClick={this.newDog}>New Random Photo</button>
+          <button className="select-btn" onClick={this.newDog}>
+            New Random Photo
+          </button>
           <select value={dogBreed} onChange={e => this.handleBreed(e)}>
             <option>SELECT Dog Breed</option>
             {Object.entries(breedList).map(([key, value]) => {
@@ -123,7 +125,9 @@ export class Main extends Component {
               );
             })} */}
           </select>
-          <button onClick={this.chosenBreed}>Display Photo by Breed</button>
+          <button className="select-btn" onClick={this.chosenBreed}>
+            Display Photo by Breed
+          </button>
           <select onChange={e => this.setRating(e)}>
             <option>SELECT A VALUE 10-16</option>
             <option value="10">10</option>
@@ -134,8 +138,12 @@ export class Main extends Component {
             <option value="15">15</option>
             <option value="16">16</option>
           </select>
-          <button onClick={this.newAddDog}>Add Your Rating</button>
-          <button onClick={this.showDash}>Checkout Your Dashboard</button>
+          <button className="select-btn" onClick={this.newAddDog}>
+            Add Your Rating
+          </button>
+          <button className="select-btn" onClick={this.showDash}>
+            Checkout Your Dashboard
+          </button>
         </main>
         {/* {allBreeds} */}
       </div>
