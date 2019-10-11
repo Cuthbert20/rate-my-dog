@@ -31,7 +31,7 @@ export class Login extends Component {
     const { username, password } = this.state;
     // console.log(this.state);
     return (
-      <div>
+      <div className="login-container">
         <h1>Login</h1>
         <input
           onChange={e => this.handleChange(e, "username")}

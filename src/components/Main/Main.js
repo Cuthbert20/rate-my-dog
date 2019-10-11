@@ -72,17 +72,17 @@ export class Main extends Component {
   //     };
   //   });
   // };
-  handleChange = (e, key) => {
-    this.setState({
-      [key]: e.target.value
-    });
-  };
   showDash = () => {
     this.props.history.push("/dashboard");
   };
   handleBreed = e => {
     this.setState({
       dogBreed: e.target.value
+    });
+  };
+  setRating = e => {
+    this.setState({
+      rating: e.target.value
     });
   };
   render() {
@@ -105,9 +105,7 @@ export class Main extends Component {
         </button>
         <main className="dog-container">
           <img className="dog-img" src={randomDog} alt="Displaying Cute Dog" />
-          {/* need to add a dropdown where rating can be selected and saved along with the photo then displayed
-          on dashboard component */}
-          <button onClick={this.newDog}>Next</button>
+          <button onClick={this.newDog}>New Random Photo</button>
           <select value={dogBreed} onChange={e => this.handleBreed(e)}>
             <option>SELECT Dog Breed</option>
             {Object.entries(breedList).map(([key, value]) => {
@@ -125,15 +123,19 @@ export class Main extends Component {
               );
             })} */}
           </select>
-          <button onClick={this.chosenBreed}>Select by Breed</button>
-          <input
-            onChange={e => this.handleChange(e, "rating")}
-            value={rating}
-            placeholder="Rate this Photo between 10-16"
-            type="text"
-          />
-          <button onClick={this.newAddDog}>Submit</button>
-          <button onClick={this.showDash}>See Your Dashboard</button>
+          <button onClick={this.chosenBreed}>Display Photo by Breed</button>
+          <select onChange={e => this.setRating(e)}>
+            <option>SELECT A VALUE 10-16</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+            <option value="13">13</option>
+            <option value="14">14</option>
+            <option value="15">15</option>
+            <option value="16">16</option>
+          </select>
+          <button onClick={this.newAddDog}>Add Your Rating</button>
+          <button onClick={this.showDash}>Checkout Your Dashboard</button>
         </main>
         {/* {allBreeds} */}
       </div>

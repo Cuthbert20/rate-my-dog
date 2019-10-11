@@ -27,3 +27,26 @@
   max-width: 350px;
   border-radius: 5px;
 }
+
+.out-btn {
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  background-color: #fff;
+  color: #777;
+  text-decoration: none;
+  padding: 15px 15px;
+  border-radius: 50px;
+  margin: 2px 8px;
+  transition: all 0.2s;
+}
+.out-btn:focus {
+  outline: 0;
+}
+.out-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+.out-btn:active {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 9px rgba(0, 0, 0, 0.3);
+}
