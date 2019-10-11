@@ -16,8 +16,12 @@
 }
 
 .dash-dog {
-  max-width: 350px;
-  max-height: 350px;
+  /* max-width: 350px;
+  max-height: 350px; */
+  /* min-width: 250px;
+  min-height: 250px; */
+  height: 250px;
+  width: 250px;
   object-fit: contain;
   border-radius: 5px;
 }
@@ -52,6 +56,7 @@
 #dog-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
 }
 
 span {
