@@ -30,8 +30,8 @@ export class Register extends Component {
   render() {
     const { username, password } = this.state;
     return (
-      <div>
-        <h1>Register</h1>
+      <div className="register-container">
+        <h1 className="header">Register</h1>
         <input
           onChange={e => this.handleChange(e, "username")}
           type="text"
@@ -44,8 +44,12 @@ export class Register extends Component {
           value={password}
           placeholder="Password..."
         />
-        <button onClick={this.handleClick}>Submit</button>
-        <button onClick={this.loginClick}>Back</button>
+        <button className="auth-btn" onClick={this.handleClick}>
+          Submit
+        </button>
+        <button className="auth-btn" onClick={this.loginClick}>
+          Login
+        </button>
       </div>
     );
   }

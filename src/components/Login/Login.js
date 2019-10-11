@@ -32,7 +32,7 @@ export class Login extends Component {
     // console.log(this.state);
     return (
       <div className="login-container">
-        <h1>Login</h1>
+        <h1 className="header">Login</h1>
         <input
           onChange={e => this.handleChange(e, "username")}
           value={username}
@@ -45,8 +45,12 @@ export class Login extends Component {
           placeholder="Your Password..."
           type="password"
         />
-        <button onClick={this.login}>Login</button>
-        <button onClick={this.registerClick}>Register</button>
+        <button className="auth-btn" onClick={this.login}>
+          Submit
+        </button>
+        <button className="auth-btn" onClick={this.registerClick}>
+          Register
+        </button>
       </div>
     );
   }

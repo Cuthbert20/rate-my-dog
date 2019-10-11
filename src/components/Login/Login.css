@@ -6,10 +6,41 @@
   height: 100vh;
   background: linear-gradient(
     to right bottom,
-    rgba(164, 196, 223, 0.8),
-    rgba(57, 55, 187, 0.8)
+    rgba(223, 169, 164, 0.5),
+    rgba(187, 55, 55, 0.8)
   );
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.header {
+  margin: 20px 0;
+}
+
+input {
+  border: 3px solid #fff;
+  margin: 5px 0;
+  padding: 5px;
+}
+
+.auth-btn {
+  text-transform: uppercase;
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: none;
+  margin: 5px 0;
+  background-color: #fff;
+  transition: all 0.2s;
+}
+.auth-btn:focus {
+  outline: none;
+}
+.auth-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+.auth-btn:active {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 9px rgba(0, 0, 0, 0.3);
 }
