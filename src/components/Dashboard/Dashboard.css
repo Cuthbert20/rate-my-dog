@@ -1,5 +1,5 @@
 .dash-container {
-  height: 100vh;
+  height: 100%;
   background: linear-gradient(
     to right bottom,
     rgba(223, 169, 164, 0.5),
@@ -10,8 +10,50 @@
   align-items: center;
   padding-top: 25px;
 }
+#user {
+  color: #fff;
+  /* text-transform: capitalize; */
+}
 
 .dash-dog {
   max-width: 350px;
+  max-height: 350px;
+  object-fit: contain;
   border-radius: 5px;
+}
+.dash-dog:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.out-btn {
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  background-color: #fff;
+  color: #777;
+  text-decoration: none;
+  padding: 15px 15px;
+  border-radius: 50px;
+  margin: 2px 8px;
+  transition: all 0.2s;
+}
+.out-btn:focus {
+  outline: 0;
+}
+.out-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+.out-btn:active {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 9px rgba(0, 0, 0, 0.3);
+}
+
+#dog-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+span {
+  color: #fff;
 }

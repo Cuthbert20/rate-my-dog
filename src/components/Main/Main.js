@@ -86,9 +86,9 @@ export class Main extends Component {
     });
   };
   render() {
-    const { randomDog, rating, dogBreed, breedList } = this.state;
-    console.log(typeof breedList);
-    console.log(this.state);
+    const { randomDog, dogBreed, breedList } = this.state;
+    console.log(this.props);
+    const { username } = this.props;
     // const allBreeds = Object.entries(breedList).map(([key, value]) => {
     //   return (
     //     <div>
@@ -98,52 +98,60 @@ export class Main extends Component {
     // });
     return (
       <div className="main-container">
-        <h1 className="title">Lets Rate Dogs</h1>
+        <h1 className="title">
+          Hi <span id="user-name">{username}</span> Lets Rate Dogs
+        </h1>
         <h5>On a Scale of 10 to 16</h5>
-        <button onClick={this.logout} className="out-btn">
-          LogOut
-        </button>
-        <main className="dog-container">
-          <img className="dog-img" src={randomDog} alt="Displaying Cute Dog" />
-          <button className="select-btn" onClick={this.newDog}>
-            New Random Photo
-          </button>
-          <select value={dogBreed} onChange={e => this.handleBreed(e)}>
-            <option>SELECT Dog Breed</option>
-            {Object.entries(breedList).map(([key, value]) => {
-              return (
-                <option value={key} key={key}>
-                  {key}
-                </option>
-              );
-            })}
-            {/* {breedList.map((elm, index) => {
-              return (
-                <option key={index} value={elm}>
-                  {elm[index]}
-                </option>
-              );
-            })} */}
-          </select>
-          <button className="select-btn" onClick={this.chosenBreed}>
-            Display Photo by Breed
-          </button>
-          <select onChange={e => this.setRating(e)}>
-            <option>SELECT A VALUE 10-16</option>
-            <option value="10">10</option>
-            <option value="11">11</option>
-            <option value="12">12</option>
-            <option value="13">13</option>
-            <option value="14">14</option>
-            <option value="15">15</option>
-            <option value="16">16</option>
-          </select>
-          <button className="select-btn" onClick={this.newAddDog}>
-            Add Your Rating
-          </button>
-          <button className="select-btn" onClick={this.showDash}>
+        <section id="nav-btn-container">
+          <button className="out-btn" onClick={this.showDash}>
             Checkout Your Dashboard
           </button>
+          <button onClick={this.logout} className="out-btn">
+            LogOut
+          </button>
+        </section>
+        <main className="dog-container">
+          <div className="img-container">
+            <img
+              className="dog-img"
+              src={randomDog}
+              alt="Displaying Cute Dog"
+            />
+
+            <button className="select-btn" onClick={this.newDog}>
+              New Random Photo
+            </button>
+          </div>
+          <aside>
+            <select value={dogBreed} onChange={e => this.handleBreed(e)}>
+              <option>SELECT Dog Breed</option>
+              {Object.entries(breedList).map(([key, value]) => {
+                return (
+                  <option value={key} key={key}>
+                    {key}
+                  </option>
+                );
+              })}
+            </select>
+            <button className="select-btn" onClick={this.chosenBreed}>
+              Display Photo by Breed
+            </button>
+          </aside>
+          <article>
+            <select onChange={e => this.setRating(e)}>
+              <option>SELECT A VALUE 10-16</option>
+              <option value="10">10</option>
+              <option value="11">11</option>
+              <option value="12">12</option>
+              <option value="13">13</option>
+              <option value="14">14</option>
+              <option value="15">15</option>
+              <option value="16">16</option>
+            </select>
+            <button className="select-btn" onClick={this.newAddDog}>
+              Add Your Rating
+            </button>
+          </article>
         </main>
         {/* {allBreeds} */}
       </div>
@@ -151,7 +159,15 @@ export class Main extends Component {
   }
 }
 
+function mapStateToProps(reduxState) {
+  const { username } = reduxState;
+
+  return {
+    username
+  };
+}
+
 export default connect(
-  null,
+  mapStateToProps,
   { logoutUser, dogsRated }
 )(Main);
